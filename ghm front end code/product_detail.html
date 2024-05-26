@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f0f8ff; /* Light blue background */
+            color: #333;
+        }
+        header {
+            background-color: #00796b; /* Teal background */
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            align-items: center;
+        }
+        header img {
+            height: 80px; /* Adjust the height as needed */
+            cursor: pointer;
+        }
+        header nav {
+            display: flex;
+            align-items: center;
+        }
+        header nav a {
+            color: #fff;
+            margin-left: 20px;
+            text-decoration: none;
+        }
+        .search-bar {
+            display: flex;
+            margin-left: 20px;
+        }
+        .search-bar input[type="text"] {
+            width: 600px;
+            padding: 10px;
+            border: 1px solid #00796b; /* Teal border */
+            border-radius: 5px 0 0 5px;
+        }
+        .search-bar button {
+            padding: 10px 20px;
+            border: 1px solid #022e29; /* Teal border */
+            border-left: none;
+            background-color: #03332d; /* Teal background */
+            color: #fff;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+        .sell-button-header {
+            margin-left: 20px;
+            padding: 10px 20px;
+            background-color: #004d40; /* Darker teal */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px; /* Added border radius */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added box shadow */
+        }
+        .product-details {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .product-details img {
+            max-width: 500px; /* Increased the max-width of the image */
+            width: 100%;
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 10px; /* More rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Stronger shadow for the image */
+            margin-bottom: 20px; /* Added margin to the bottom */
+        }
+        .details-container {
+            flex: 1;
+            margin-left: 20px;
+        }
+        .details-container h1 {
+            margin: 10px 0;
+            font-size: 28px; /* Increased font size for the product name */
+        }
+        .details-container p {
+            margin: 5px 0;
+            line-height: 1.6; /* Increased line height for better readability */
+        }
+        .price {
+            font-size: 24px;
+            color: #b12704;
+            margin: 10px 0;
+        }
+        .description {
+            margin: 10px 0;
+            font-size: 18px; /* Increased font size for the description */
+        }
+        .contact {
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .details-container button {
+            padding: 15px 30px; /* Increased padding for larger buttons */
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 10px; /* Increased border radius */
+            cursor: pointer;
+            margin-top: 20px; /* Added more margin to the top */
+            font-size: 18px; /* Increased font size */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added shadow for better visibility */
+            transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+        }
+        .details-container button:hover {
+            background-color: #0056b3; /* Darker blue for hover effect */
+        }
+        .details-container .sell-button {
+            background-color: #004d40; /* Different color for the sell button */
+        }
+        .details-container .sell-button:hover {
+            background-color: #00332b; /* Darker color for hover effect */
+        }
+        .review-section {
+            margin-top: 40px;
+            width: 100%;
+        }
+        .review-section h2 {
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 10px;
+        }
+        .review-section textarea {
+            width: 100%;
+            padding: 15px; /* Increased padding */
+            border: 1px solid #ccc;
+            border-radius: 10px; /* Increased border radius */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Added shadow for better visibility */
+            font-size: 16px; /* Increased font size */
+        }
+        .review-section button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 10px; /* Increased border radius */
+            cursor: pointer;
+            font-size: 16px; /* Increased font size */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added shadow for better visibility */
+            transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+        }
+        .review-section button:hover {
+            background-color: #0056b3; /* Darker blue for hover effect */
+        }
+        .reviews {
+            margin-top: 20px;
+        }
+        .review {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+        .review p {
+            margin: 5px 0;
+            font-size: 16px; /* Increased font size for reviews */
+        }
+        @media (max-width: 768px) {
+            .search-bar input[type="text"] {
+                width: 100%;
+            }
+            .details-container {
+                margin-left: 0;
+                margin-top: 20px;
+            }
+            .product-details {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="landing_page.html">
+            <img src="C:\Users\saket\OneDrive\career\web dev hackathon\codes for web dev\code 2.0\GHM-removebg-preview.png" alt="Logo">
+        </a>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search for products...">
+            <button onclick="searchProducts()">Search</button>
+        </div>
+        <nav>
+            <a href="sign_in.html">Sign In</a>
+            <button class="sell-button-header" onclick="window.location.href='product.html'">Sell an Item</button>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="product-details" id="product-details">
+            <!-- Product details will be populated here -->
+        </div>
+        <div class="review-section">
+            <h2>Add a Review</h2>
+            <textarea id="review-text" rows="4" placeholder="Write your review here..."></textarea>
+            <button onclick="addReview()">Submit Review</button>
+        </div>
+        <div class="reviews" id="reviews">
+            <h2>Reviews</h2>
+            <!-- Reviews will be populated here -->
+        </div>
+    </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+        const products = JSON.parse(localStorage.getItem('products')) || [];
+        const product = products.find(p => p.id == productId);
+
+        if (!product.reviews) {
+            product.reviews = [];
+        }
+
+        function displayProductDetails() {
+            const productDetails = document.getElementById('product-details');
+            productDetails.innerHTML = `
+                <img src="${product.image}" alt="${product.name}">
+                <div class="details-container">
+                    <h1>${product.name}</h1>
+                    <p class="price">$${product.price}</p>
+                    <p class="description">${product.description}</p>
+                    <p class="contact">Contact: ${product.contact}</p>
+                    <button onclick="window.location.href='chat.html?id=${product.id}'">Chat with Seller</button>
+                    <button class="sell-button" onclick="markAsSold(${product.id})">Mark as Sold</button>
+                </div>
+            `;
+        }
+
+        function displayReviews() {
+            const reviewsContainer = document.getElementById('reviews');
+            reviewsContainer.innerHTML = '<h2>Reviews</h2>'; // Clear previous reviews and add the title
+            product.reviews.forEach(review => {
+                const reviewItem = document.createElement('div');
+                reviewItem.className = 'review';
+                reviewItem.innerHTML = `<p>${review}</p>`;
+                reviewsContainer.appendChild(reviewItem);
+            });
+        }
+
+        function addReview() {
+            const reviewText = document.getElementById('review-text').value;
+            if (reviewText) {
+                product.reviews.push(reviewText);
+                localStorage.setItem('products', JSON.stringify(products));
+                document.getElementById('review-text').value = '';
+                displayReviews();
+            } else {
+                alert('Please write a review.');
+            }
+        }
+
+        function searchProducts() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            if (query) {
+                localStorage.setItem('searchQuery', query);
+                window.location.href = 'search_results.html';
+            } else {
+                alert('Please enter a search term.');
+            }
+        }
+
+        function markAsSold(productId) {
+            const products = JSON.parse(localStorage.getItem('products')) || [];
+            const productIndex = products.findIndex(product => product.id === productId);
+            if (productIndex !== -1) {
+                products[productIndex].sold = true;
+                localStorage.setItem('products', JSON.stringify(products));
+                window.location.href = 'landing_page.html'; // Redirect to the landing page after marking as sold
+            }
+        }
+
+        // Display product details and reviews when the page is loaded
+        window.onload = function() {
+            if (product) {
+                displayProductDetails();
+                displayReviews();
+            } else {
+                alert('Product not found.');
+                window.location.href = 'landing_page.html';
+            }
+        }
+    </script>
+</body>
+</html>

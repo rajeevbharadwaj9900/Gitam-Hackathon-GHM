@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy & Sell Platform</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <a href="landing_page.html">
+            <img src="GHM-removebg-preview.png" alt="Logo"> <!-- Ensure this path is correct -->
+        </a>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search for products...">
+            <button onclick="searchProducts()">Search</button>
+        </div>
+        <nav>
+            <a href="sign_in.html">Sign In</a>
+            <button class="sell-button-header" onclick="window.location.href='product.html'">Sell an Item</button>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="carousel">
+            <div class="carousel-track" id="carousel-track">
+                <!-- Carousel items will be populated here -->
+            </div>
+            <div class="carousel-buttons">
+                <button class="carousel-button" id="carousel-button-prev">&lt;</button>
+                <button class="carousel-button" id="carousel-button-next">&gt;</button>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="sidebar">
+                <div class="filters">
+                    <h2>Filters</h2>
+                    <select id="filter-select" onchange="loadProducts()">
+                        <option value="">Select a filter</option>
+                        <option value="price-low-high">Price: Low to High</option>
+                        <option value="price-high-low">Price: High to Low</option>
+                        <option value="newest">Newest</option>
+                        <option value="popular">Most Popular</option>
+                    </select>
+                </div>
+                <div class="categories">
+                    <h2>Categories</h2>
+                    <select id="category-select" onchange="loadProducts()">
+                        <option value="">Select a category</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="fashion">Fashion</option>
+                        <option value="home">Home & Garden</option>
+                        <option value="books">Books</option>
+                        <option value="sports">Sports & Outdoors</option>
+                        <option value="furniture">Furniture</option>
+                        <option value="roommates">Roommates</option>
+                        <option value="accommodation">Accommodation</option>
+                        <option value="textbooks">Textbooks</option>
+                        <option value="study-materials">Study Materials</option>
+                        <option value="bikes">Bikes</option>
+                        <option value="appliances">Appliances</option>
+                    </select>
+                </div>
+            </div>
+            <div class="product-list" id="product-list"></div>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-section">
+            <h3>POPULAR LOCATIONS</h3>
+            <ul>
+                <li><a href="#">Kolkata</a></li>
+                <li><a href="#">Mumbai</a></li>
+                <li><a href="#">Chennai</a></li>
+                <li><a href="#">Pune</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>TRENDING LOCATIONS</h3>
+            <ul>
+                <li><a href="#">Bhubaneshwar</a></li>
+                <li><a href="#">Hyderabad</a></li>
+                <li><a href="#">Chandigarh</a></li>
+                <li><a href="#">Nashik</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>ABOUT US</h3>
+            <ul>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">Tech@GHM</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>GHM</h3>
+            <ul>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Help</a></li>
+                <li><a href="#">Sitemap</a></li>
+                <li><a href="#">Legal & Privacy information</a></li>
+                <li><a href="#">Vulnerability Disclosure Program</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>FOLLOW US</h3>
+            <div class="social-media">
+                <a href="#"><img src="https://tse4.mm.bing.net/th/id/OIP.-wA1Dzdbb03qhnaYFD5CjQHaHa?rs=1&pid=ImgDetMain" alt="Facebook" width="30"></a>
+                <a href="#"><img src="https://logodownload.org/wp-content/uploads/2017/04/instagram-logo-6.png" alt="Instagram" width="30"></a>
+                <a href="#"><img src="https://logodix.com/logo/847882.png" alt="X" width="30"></a>
+                <a href="#"><img src="https://www.logolynx.com/images/logolynx/78/78f67d3825088b7e38c08d048f60ffb9.png" alt="YouTube" width="30"></a>
+            </div>
+        </div>
+        <div class="footer-section">
+            <h3>DOWNLOAD OUR APP</h3>
+            <div class="app-links">
+                <a href="#"><img src="https://logos-world.net/wp-content/uploads/2020/12/Google-Play-icon-logo.png" alt="Google Play" width="100"></a>
+                <a href="#"><img src="https://logos-world.net/wp-content/uploads/2021/02/App-Store-Logo-2013-2017.png" alt="App Store" width="100"></a>
+            </div>
+        </div>
+        <div class="footer-section">
+            <p>&copy; 2024 . All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

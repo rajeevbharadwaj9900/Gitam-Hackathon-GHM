@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f0f8ff; /* Light blue background */
+            color: #333;
+        }
+        header {
+            background-color: #00796b; /* Teal background */
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 20px;
+            align-items: center;
+        }
+        header img {
+            height: 80px; /* Adjust the height as needed */
+            cursor: pointer;
+        }
+        header nav {
+            display: flex;
+            align-items: center;
+        }
+        header nav a {
+            color: #fff;
+            margin-left: 20px;
+            text-decoration: none;
+        }
+        .search-bar {
+            display: flex;
+            margin-left: 20px;
+        }
+        .search-bar input[type="text"] {
+            width: 600px;
+            padding: 10px;
+            border: 1px solid #00796b; /* Teal border */
+            border-radius: 5px 0 0 5px;
+        }
+        .search-bar button {
+            padding: 10px 20px;
+            border: 1px solid #022e29; /* Teal border */
+            border-left: none;
+            background-color: #03332d; /* Teal background */
+            color: #fff;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+        }
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .product-item {
+            border: 1px solid #00796b; /* Teal border */
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            text-align: center;
+            background-color: #fff;
+        }
+        .product-item img {
+            max-width: 100%;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="landing_page.html">
+            <img src="C:\Users\saket\OneDrive\career\web dev hackathon\codes for web dev\code 2.0\GHM-removebg-preview.png" alt="Logo">
+        </a>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search for products...">
+            <button onclick="searchProducts()">Search</button>
+        </div>
+        <nav>
+            <a href="#">Sign In</a>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Search Results</h1>
+        <div class="product-list" id="product-list">
+            <!-- Search results will be populated here -->
+        </div>
+    </div>
+    <script>
+        function searchProducts() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            if (query) {
+                localStorage.setItem('searchQuery', query);
+                window.location.href = 'search_results.html';
+            } else {
+                alert('Please enter a search term.');
+            }
+        }
+
+        function displaySearchResults() {
+            const query = localStorage.getItem('searchQuery');
+            const productList = document.getElementById('product-list');
+            const products = JSON.parse(localStorage.getItem('products')) || [];
+            const filteredProducts = products.filter(product => 
+                product.name.toLowerCase().includes(query) ||
+                product.description.toLowerCase().includes(query)
+            );
+
+            productList.innerHTML = ''; // Clear previous results
+            filteredProducts.forEach(product => {
+                const productItem = document.createElement('div');
+                productItem.className = 'product-item';
+                productItem.onclick = () => window.location.href = `product_detail.html?id=${product.id}`;
+                productItem.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>Price: $${product.price}</p>
+                `;
+                productList.appendChild(productItem);
+            });
+
+            if (filteredProducts.length === 0) {
+                productList.innerHTML = '<p>No products found matching your search criteria.</p>';
+            }
+        }
+
+        // Display search results when the page is loaded
+        window.onload = function() {
+            displaySearchResults();
+        }
+    </script>
+</body>
+</html>

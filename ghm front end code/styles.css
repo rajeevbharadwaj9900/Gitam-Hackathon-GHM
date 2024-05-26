@@ -1,0 +1,353 @@
+/*-----------------------------------*\
+  #styles.css
+\*-----------------------------------*/
+
+/**
+ * Custom properties
+ */
+
+ :root {
+  /**
+   * Colors
+   */
+
+  --primary-color: #00796b; /* Teal background */
+  --secondary-color: hsl(167, 45%, 72%);
+  --background-color: #00796b; /* Green from the provided image */
+  --text-color: hsl(0, 0%, 20%);
+  --border-color: hsl(0, 0%, 80%);
+  --light-color: hsl(0, 0%, 98%);
+  --dark-color: hsl(0, 0%, 20%);
+  --accent-color: hsl(17, 96%, 48%); /* Red-orange */
+  --sidebar-background-color: #f0f0f0; /* New background color for the sidebar */
+
+  /**
+   * Typography
+   */
+
+  --font-primary: 'Roboto', sans-serif;
+  --font-secondary: 'Mr De Haviland', cursive;
+
+  --fs-large: 2.4rem;
+  --fs-medium: 1.6rem;
+  --fs-small: 1.4rem;
+
+  --fw-bold: 700;
+  --fw-medium: 500;
+
+  /**
+   * Spacing
+   */
+
+  --padding: 20px;
+  --margin: 20px;
+
+  /**
+   * Shadows
+   */
+
+  --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+  /**
+   * Transition
+   */
+
+  --transition-fast: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
+/*-----------------------------------*\
+  #Reset
+\*-----------------------------------*/
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+input {
+  width: 100%;
+  border: none;
+}
+
+html {
+  font-size: 10px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-size: var(--fs-medium);
+  color: var(--text-color);
+  background-color: var(--light-color); /* Changed to a light color to ensure readability */
+  line-height: 1.6;
+}
+
+/*-----------------------------------*\
+  #Header
+\*-----------------------------------*/
+
+header {
+  background-color: var(--primary-color);
+  color: var(--light-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--padding) var(--padding);
+  box-shadow: var(--box-shadow);
+}
+
+header img {
+  height: 80px;
+}
+
+header nav {
+  display: flex;
+  gap: var(--padding);
+}
+
+header nav a {
+  color: var(--light-color);
+  font-size: var(--fs-medium);
+}
+
+header .search-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--padding);
+}
+
+header .search-bar input {
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px 0 0 5px;
+  width: 800px; 
+}
+
+header .search-bar button {
+  padding: 10px 20px;
+  background-color: var(--secondary-color);
+  color: var(--light-color);
+  border-radius: 0 5px 5px 0;
+}
+
+header .sell-button-header {
+  padding: 10px 20px;
+  background-color: var(--accent-color);
+  color: var(--light-color);
+  border-radius: 5px;
+}
+
+/*-----------------------------------*\
+  #Container
+\*-----------------------------------*/
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--padding);
+}
+
+/*-----------------------------------*\
+  #Main Content
+\*-----------------------------------*/
+
+.main-content {
+  display: flex;
+  gap: var(--margin);
+}
+
+.sidebar {
+  width: 250px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--margin);
+  background-color: #CDE8E5; /* Added background color */
+  padding: var(--padding);
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+}
+
+.filters select,
+.categories select {
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  background-color: var(--light-color);
+}
+
+/*-----------------------------------*\
+  #Carousel
+\*-----------------------------------*/
+
+.carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: var(--margin);
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+  background-color: var(--secondary-color); /* Changed background color */
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform var(--transition-fast);
+}
+
+.carousel-item {
+  min-width: 200px;
+  margin-right: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: var(--padding);
+  text-align: center;
+  background-color: var(--light-color);
+  cursor: pointer;
+  box-shadow: var(--box-shadow);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.carousel-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-buttons {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+.carousel-button {
+  background-color: var(--dark-color);
+  color: var(--light-color);
+  border-radius: 50%;
+  padding: 10px;
+}
+
+/*-----------------------------------*\
+  #Product List
+\*-----------------------------------*/
+
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--margin);
+  justify-content: flex-start; /* Ensure items start from the left */
+}
+
+.product-item {
+  flex: 0 1 calc(33.33% - var(--margin)); /* Ensure three items per row */
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: var(--padding);
+  background-color: var(--light-color);
+  text-align: center;
+  box-shadow: var(--box-shadow);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.product-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-item img {
+  margin-bottom: var(--padding);
+}
+
+/*-----------------------------------*\
+  #Footer
+\*-----------------------------------*/
+
+footer {
+  background-color: var(--primary-color);
+  color: var(--light-color);
+  padding: var(--padding);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--margin);
+}
+
+footer h3 {
+  margin-bottom: var(--padding);
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+footer li {
+  margin-bottom: 5px;
+}
+
+footer a {
+  color: var(--light-color);
+}
+
+footer .social-media a,
+footer .app-links img {
+  margin: 0 10px;
+}
+
+footer .social-media a img,
+footer .app-links img {
+  height: 30px;
+  width: auto;
+}
+
+/*-----------------------------------*\
+  #Media Queries
+\*-----------------------------------*/
+
+@media (max-width: 768px) {
+  .search-bar input {
+    width: 100%;
+  }
+  .sidebar {
+    display: none;
+  }
+  .main-content {
+    flex-direction: column;
+  }
+  footer {
+    flex-direction: column;
+    align-items: center;
+  }
+  .product-list {
+    flex-direction: column;
+  }
+  .product-item {
+    flex: 1 1 100%;
+  }
+}

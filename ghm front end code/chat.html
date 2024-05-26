@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with Seller</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f0f8ff; /* Light blue background */
+            color: #333;
+        }
+        header {
+            background-color: #00796b; /* Teal background */
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 20px;
+            align-items: center;
+        }
+        header img {
+            height: 80px; /* Increased height */
+        }
+        header nav {
+            display: flex;
+            align-items: center;
+        }
+        header nav a {
+            color: #fff;
+            margin-left: 20px;
+            text-decoration: none;
+        }
+        .search-bar {
+            display: flex;
+            margin-left: 20px;
+        }
+        .search-bar input[type="text"] {
+            width: 600px;
+            padding: 10px;
+            border: 1px solid #00796b; /* Teal border */
+            border-radius: 5px 0 0 5px;
+        }
+        .search-bar button {
+            padding: 10px 20px;
+            border: 1px solid #022e29; /* Teal border */
+            border-left: none;
+            background-color: #03332d; /* Teal background */
+            color: #fff;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+        .sell-button-header {
+            margin-left: 20px;
+            padding: 10px 20px;
+            background-color: #004d40; /* Darker teal */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .container {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .chat-box-heading {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            text-align: center;
+            color: #00796b; /* Teal color */
+        }
+        .chat-box {
+            border: 1px solid #00796b; /* Teal border */
+            border-radius: 5px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            height: 600px; /* Increased height */
+            background-color: #fff;
+            align-items: flex-end; /* Align items to the right */
+        }
+        .messages {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden; /* Hide horizontal scroll bar */
+            margin-bottom: 20px;
+            width: 100%; /* Full width to accommodate messages */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end; /* Align messages to the right */
+        }
+        .message {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 10px; /* Rounded corners */
+            position: relative;
+            display: inline-block; /* Ensure it doesn't take full width */
+            max-width: 70%; /* Prevent message from being too wide */
+            word-wrap: break-word; /* Ensure long words break correctly */
+        }
+        .message.buyer {
+            background-color: #f1f1f1;
+            text-align: left;
+            align-self: flex-end; /* Align message to the right */
+        }
+        .message.seller {
+            background-color: #007bff;
+            color: #fff;
+            text-align: left;
+            align-self: flex-start; /* Align message to the left */
+        }
+        .message .timestamp {
+            display: block;
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 5px;
+        }
+        .message::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+        }
+        .message.buyer::before {
+            border-left: 8px solid #f1f1f1; /* Arrow pointing left */
+            right: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .message.seller::before {
+            border-right: 8px solid #007bff; /* Arrow pointing right */
+            left: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .input-group {
+            display: flex;
+            justify-content: flex-end;
+            width: 100%; /* Full width for input group */
+        }
+        .input-group input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #00796b; /* Teal border */
+            border-radius: 5px 0 0 5px;
+        }
+        .input-group button {
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+        /* Additional styling */
+        .input-group input:focus,
+        .search-bar input:focus {
+            outline: none;
+            border-color: #004d40; /* Darker teal */
+        }
+        .input-group button:hover,
+        .search-bar button:hover,
+        .sell-button-header:hover {
+            background-color: #005f56; /* Slightly darker teal */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="landing_page.html">
+            <img src="C:\Users\saket\OneDrive\career\web dev hackathon\codes for web dev\code 2.0\GHM-removebg-preview.png" alt="Logo"> <!-- Replace with your logo image path -->
+        </a>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search for products...">
+            <button onclick="searchProducts()">Search</button>
+        </div>
+        <nav>
+            <a href="sign_in.html">Sign In</a>
+            <button class="sell-button-header" onclick="window.location.href='product.html'">Sell an Item</button>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="chat-box-heading">Chat with Seller</div>
+        <div class="chat-box">
+            <div class="messages" id="messages"></div>
+            <div class="input-group">
+                <input type="text" id="message-input" placeholder="Type your message...">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const messagesContainer = document.getElementById('messages');
+        const messageInput = document.getElementById('message-input');
+
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (message === '') return;
+
+            // Display buyer's message with timestamp
+            displayMessage(message, 'buyer');
+
+            // Simulate seller's response with timestamp
+            setTimeout(() => {
+                displayMessage('Thank you for your message. I will get back to you soon.', 'seller');
+            }, 1000);
+
+            messageInput.value = '';
+        }
+
+        function displayMessage(text, sender) {
+            const messageElement = document.createElement('div');
+            messageElement.className = `message ${sender}`;
+
+            // Get current timestamp
+            const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+            // Add text and timestamp to message
+            messageElement.innerHTML = `${text} <span class="timestamp">${timestamp}</span>`;
+            messagesContainer.appendChild(messageElement);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function searchProducts() {
+            const query = document.getElementById('search-input').value;
+            if (query) {
+                // Implement search functionality here
+                console.log('Searching for:', query);
+            }
+        }
+    </script>
+</body>
+</html>

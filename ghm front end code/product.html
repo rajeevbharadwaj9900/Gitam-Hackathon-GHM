@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell Your Product</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f0f8ff; /* Light blue background */
+            color: #333;
+        }
+        .container {
+            padding: 20px;
+            max-width: 800px; /* Limit container width for better readability */
+            margin: 20px auto; /* Center container horizontally and add vertical margin */
+            background-color: #fff; /* White background for the form */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+        }
+        header {
+            background-color: #00796b; /* Teal background */
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 120px; /* Set header height */
+            padding: 0 20px; /* Adjust padding to align items */
+        }
+        header img {
+            height: 90px; /* Adjusted height to increase logo size */
+        }
+        header h1 {
+            flex: 1;
+            text-align: center; /* Center the heading text */
+            margin: 0;
+            font-size: 24px; /* Larger font size for the heading */
+        }
+        header nav {
+            display: flex;
+            align-items: center;
+        }
+        header nav a {
+            color: #fff;
+            margin-left: 20px;
+            text-decoration: none;
+            font-weight: bold; /* Bold navigation links */
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #00796b; /* Teal */
+            font-weight: bold; /* Bold label text */
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #00796b; /* Teal border */
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .form-group input[type="file"] {
+            padding: 3px;
+        }
+        .sell-button {
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #004d40; /* Darker teal */
+            color: #fff;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px; /* Larger font size for button text */
+            transition: background-color 0.3s; /* Smooth background color transition */
+        }
+        .sell-button:hover {
+            background-color: #00332d; /* Even darker teal on hover */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="landing_page.html">
+            <img src="GHM-removebg-preview.png" alt="Logo"> <!-- Replace with your logo image path -->
+        </a>
+        <h1>GITAM HEIRLOOM MARKET SELLER'S ARENA</h1>
+        <nav>
+            <a href="sign_in.html">Sign In</a>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="form-group">
+            <label for="name">Product Name:</label>
+            <input type="text" id="name" required>
+        </div>
+        <div class="form-group">
+            <label for="category">Category:</label>
+            <select id="category" required>
+                <option value="">Select a category</option>
+                <option value="electronics">Electronics</option>
+                <option value="fashion">Fashion</option>
+                <option value="home">Home & Garden</option>
+                <option value="books">Books</option>
+                <option value="sports">Sports & Outdoors</option>
+                <option value="stationery">Stationery</option> <!-- New category -->
+                <option value="school-supplies">School Supplies</option> <!-- New category -->
+                <option value="textbooks">Textbooks</option> <!-- New category -->
+                <option value="laptops">Laptops</option> <!-- New category -->
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" rows="4" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="image">Upload Image:</label>
+            <input type="file" id="image" accept="image/*" required>
+        </div>
+        <div class="form-group">
+            <label for="contact">Contact Details:</label>
+            <input type="text" id="contact" required>
+        </div>
+        <div class="form-group">
+            <label for="price">Estimated Price:</label>
+            <input type="number" id="price" required>
+        </div>
+        <button class="sell-button" onclick="sellProduct()">Sell</button>
+    </div>
+    <script>
+        function sellProduct() {
+            const name = document.getElementById('name').value;
+            const category = document.getElementById('category').value;
+            const description = document.getElementById('description').value;
+            const image = document.getElementById('image').files[0];
+            const contact = document.getElementById('contact').value;
+            const price = document.getElementById('price').value;
+
+            if (name && category && description && image && contact && price) {
+                const reader = new FileReader();
+                reader.onloadend = function() {
+                    const product = {
+                        id: new Date().getTime(),
+                        name,
+                        category,
+                        description,
+                        image: reader.result,
+                        contact,
+                        price,
+                        reviews: []
+                    };
+                    const products = JSON.parse(localStorage.getItem('products')) || [];
+                    products.push(product);
+                    localStorage.setItem('products', JSON.stringify(products));
+                    alert('Product is now ready to be sold.');
+                    window.location.href = 'landing_page.html';
+                };
+                reader.readAsDataURL(image);
+            } else {
+                alert('Please fill in all fields.');
+            }
+        }
+
+        function searchProducts() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            if (query) {
+                localStorage.setItem('searchQuery', query);
+                window.location.href = 'search_results.html';
+            } else {
+                alert('Please enter a search term.');
+            }
+        }
+    </script>
+</body>
+</html>

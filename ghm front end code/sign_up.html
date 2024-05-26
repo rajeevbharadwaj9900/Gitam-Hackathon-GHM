@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #d0ebeb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .signup-container {
+            text-align: center;
+        }
+
+        .signup-form {
+            background-color: #174a4e;
+            border-radius: 8px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+        }
+
+        .signup-form h2 {
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .name-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .form-control1, .form-control {
+            margin-bottom: 10px;
+            flex: 1;
+        }
+
+        .form-control1:last-child, .form-control:last-child {
+            margin-right: 0;
+        }
+
+        .form-control1 {
+            margin-right: 10px;
+        }
+
+        .form-control1 input, .form-control input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #dddddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form-control button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #26a69a;
+            color: white;
+            cursor: pointer;
+        }
+
+        .form-control button:hover {
+            background-color: #1e8277;
+        }
+
+        .terms {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+
+        .terms input {
+            margin-right: 10px;
+        }
+
+        .terms a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .login-link {
+            text-align: center;
+            color: #ffffff;
+            margin-top: 20px;
+        }
+
+        .login-link a {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        .show-password {
+            display: flex;
+            align-items: center;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .show-password input {
+            margin-right: 10px;
+        }
+
+        .error-message {
+            color: #ff0000;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="signup-container">
+    <h1>GITAM HEIRLOOM MARKET</h1>
+    <p>Sell/Buy university-coded products of your choice</p>
+    <div class="signup-form">
+        <h2>Sign Up</h2>
+        <form id="signup-form">
+            <div class="name-container">
+                <div class="form-control1">
+                    <input type="text" placeholder="First Name" required>
+                </div>
+                <div class="form-control1">
+                    <input type="text" placeholder="Last Name" required>
+                </div>
+            </div>
+            <div class="form-control">
+                <input type="email" placeholder="Email" required>
+            </div>
+            <div class="form-control">
+                <input type="password" id="password" placeholder="Password" required>
+            </div>
+            <div class="form-control">
+                <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+            </div>
+            <div class="show-password">
+                <input type="checkbox" id="show-password-checkbox">
+                <label for="show-password-checkbox">Show Password</label>
+            </div>
+            <div class="terms">
+                <input type="checkbox" id="terms" required>
+                <label for="terms">I accept the <a href="terms.html" target="_blank">Terms of Use & Privacy Policy</a></label>
+            </div>
+            <div class="error-message" id="error-message"></div>
+            <div class="form-control">
+                <button type="submit">Sign Up</button>
+            </div>
+            <div class="login-link">
+                Already have an account? <a href="sign_in.html">Login here</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.getElementById('signup-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        var password = document.getElementById('password').value;
+        var confirmPassword = document.getElementById('confirm-password').value;
+        var errorMessage = document.getElementById('error-message');
+
+        if (password !== confirmPassword) {
+            errorMessage.textContent = 'Passwords do not match.';
+        } else {
+            errorMessage.textContent = '';
+            window.location.href = 'sign_in.html'; // Replace 'sign_in.html' with the actual sign-in page URL
+        }
+    });
+
+    document.getElementById('show-password-checkbox').addEventListener('change', function() {
+        var passwordField = document.getElementById('password');
+        var confirmPasswordField = document.getElementById('confirm-password');
+        if (this.checked) {
+            passwordField.type = 'text';
+            confirmPasswordField.type = 'text';
+        } else {
+            passwordField.type = 'password';
+            confirmPasswordField.type = 'password';
+        }
+    });
+</script>
+
+</body>
+</html>
